@@ -25,6 +25,10 @@ const UserExpSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  cost:{
+    type:Number,
+    require:true
+  },
   userID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user' // Use 'user' instead of 'User'
@@ -34,4 +38,4 @@ const UserExpSchema = new mongoose.Schema({
 const User = mongoose.model('user', UserSchema);
 const UserExp = mongoose.model('userExp',UserExpSchema)
 
-module.exports ={User,UserExp}
+module.exports =User

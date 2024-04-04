@@ -1,5 +1,5 @@
 
- const {User,UserExp} = require('../db/user')
+ const User = require('../db/user')
 
 
 async function signup(req,res){
@@ -22,6 +22,13 @@ async function signup(req,res){
     }
 }
 
+
+async function AddExpenses(req,res){
+
+  res.json({msg:'expenses added'})
+
+}
+
 async function login(req,res){
 
     let {username,password} = req.body;
@@ -32,16 +39,24 @@ async function login(req,res){
         return res.json({msg:'user does not Exist !'})
     }
 
-
     res.json({msg:'login'})
 
 }
 
 
 async function Getusers(req,res){
+ 
+
     let users = await User.find()
 
     res.json({users:users})
 }
+async function GetUserById(req,res){
+    let id = req.params.id
 
-module.exports = {signup,login,Getusers}
+    let user = await User.findById({id})
+
+    res.json({user:user})
+}
+
+module.exports = {signup,login,Getusers ,AddExpenses,GetUserById}
